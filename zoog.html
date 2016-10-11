@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+    <title>p5js Template</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.3/p5.js"></script>
+    
+    <script>
+        function setup() {
+            createCanvas(600,600);
+        }
+        function draw() {
+        //ears
+        strokeWeight(1)
+        stroke(0,0,0,255)
+        fill(255,255,102)
+        ellipseMode(CENTER)
+        ellipse(150,100,50,50)
+        ellipse(250,100,50,50)
+        
+        //body
+        rectMode(CENTER)
+        rect(200,200,200,200)
+        
+        //eyes
+        fill(0,0,0)
+        ellipse(170,160,25,40)
+        ellipse(220,160,25,40)
+        
+        //pupils
+        fill(75,75,75)
+        ellipse(165,155,10,20)
+        ellipse(215,155,10,20)
+        
+        //nose
+        fill(0,0,0)
+        ellipse(200,210,90,35)
+        
+        //smile
+        strokeWeight(6)
+        fill(255,2)
+        curve(170,210,170,260,220,260,220,210)
+        
+        //legs
+        strokeWeight(1.001)
+        fill(255,255,102)
+        rect(170,312.5,10,25)
+        rect(220,312.5,10,25)
+        
+        //feet
+        ellipse(170,335,50,25)
+        ellipse(220,335,50,25)
+        
+        //tail
+        stroke(0,0)
+        rect(315,290,30,20)
+        rect(340,255,20,90)
+        rect(395,220,90,20)
+        rect(450,255,20,90)
+        rect(407.4,290,65,20)
+        rect(385,261.5,20,37)
+        rect(410,253,30,20)
+        }
+    </script>
+</head>
+
+<body>
+    <div id="code" class="container-fluid">
+        <script src="https://gist-it.appspot.com/github/USERNAME/p5js/blob/gh-pages/FILENAME.html?footer=0"></script>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script>
+        $(window).bind("load", function() {
+            $('#code').before($('#defaultCanvas0').remove());
+        });
+    </script>
+</body>
+
+</html>
