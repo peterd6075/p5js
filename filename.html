@@ -1,0 +1,72 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+    <title>p5js Template</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.3/p5.js"></script>
+    
+    <script>
+        function setup() {
+            createCanvas(500,500);
+            background(19,200,251) //make background light blue
+        }
+        
+        function draw() {
+            //create opening text
+            fill('black')
+            textSize(17)
+            textAlign(CENTER)
+            text('PRESS THE MOUSE TO MAKE FROSTY', 250,50)
+            text('PRESS AND DRAG THE MOUSE TO MOVE FROSTY',250,100)
+            text('PRESS SPACE TO MAKE FROSTY COME TO LIFE', 250,150)
+            fill('gray')
+        }
+        
+        var hat_on = 0 //make a variable for whether or not the hat is on
+        function mouseDragged() {
+            clear()
+            background(19,200,251)
+            //body circles
+            fill('white')
+            ellipse(mouseX,mouseY-40,40,40)
+            ellipse(mouseX,mouseY,50,50)
+            ellipse(mouseX,mouseY+50,75,75)
+            //hat appearing
+            if(hat_on === 1) {
+                fill('black')
+                ellipse(mouseX,mouseY-60,50,5)
+                rectMode(CENTER)
+                rect(mouseX,mouseY-80,40,40)
+                fill('pink')
+                rect(mouseX,mouseY-70,40,10)
+            }
+            else {
+                
+            }
+            //eyes
+            fill('black')
+            ellipse(mouseX-7,mouseY-45,10,10)
+            ellipse(mouseX+7,mouseY-45,10,10)
+            //carrot nose
+            fill('orange')
+            ellipse(mouseX,mouseY-33,12,12)
+            //buttons
+            fill('black')
+            ellipse(mouseX,mouseY-10,5,5)
+            ellipse(mouseX,mouseY,5,5)
+            ellipse(mouseX,mouseY+30,5,5)
+            ellipse(mouseX,mouseY+50,5,5)
+            ellipse(mouseX,mouseY+70,5,5)
+        }
+        function keyPressed() {
+            //when key is pressed, hat_on will change to 1, making the hat appear
+            hat_on = 1
+        }
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
