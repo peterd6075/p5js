@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+    <title>p5js Template</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.13/p5.js"></script>
+    <script>
+      var seconds;
+      var hold;
+      var timeBegin;
+      var timeR;
+      var game;
+
+      function setup() {
+        game = 0
+        hold = random(4000, 8000);
+        createCanvas(500, 500);
+        background(0);
+        fill(255);
+        textSize(32);
+        textAlign(CENTER)
+        text("Press SPACE to begin", 250, 400);
+        text("Player 1: LEFT Arrow", 175, 125);
+        text("Player 2: RIGHT Arrow", 325, 250);
+        }
+
+      function draw() {
+        seconds = millis()
+        if ((timeR < seconds) && (game != 2)) {
+          game = 1;
+          background(0,255,0);                
+          text("GO!", 250, 250);
+          if (keyCode == LEFT_ARROW) {            
+            background(0,0,255);
+            textAlign(LEFT)
+            text("Player 1 Wins!", 45, 200);
+            text("Press SPACE to play again!",45,400)
+            game = 2;
+         }
+          else if (keyCode == RIGHT_ARROW) {
+            background(0,0,255);
+            textAlign(LEFT)
+            text("Player 2 Wins!", 200, 200);
+            textAlign(RIGHT)
+            text("Press SPACE to play again!",430,400)
+            game = 2;
+          }
+        } 
+        if ((keyCode == LEFT_ARROW) && (game == 0)) {
+          background(24,231,250);
+          text("Player 1 jumped the gun!", 250, 250);
+          game = 2;
+        }
+        if ((keyCode == RIGHT_ARROW) && (game == 0)) {
+          background(234,99,234);
+          text("Player 2 jumped the gun!", 250, 250);
+          game = 2;
+        }
+      }
+
+
+
+
+        function keyPressed() {
+          if (keyCode == 32) {
+            game = 0;
+            background(255,0,0);
+            text("WAIT", 250, 250);
+            timeBegin = millis();
+            timeR = hold + timeBegin;
+          }
+        }
+var ar=new Array(32,33,34,35,36,37,38,39,40);
+$(document) .keydown(function(e) {
+  var key = e.which;
+  if($.inArray(key,ar) > -1) {
+    e.preventDefault();
+  }
+  return true;
+});
+  }
+}
+    </script>
+</head>
+
+<body>
+    <div id="code" class="container-fluid">
+        <script src="https://gist-it.appspot.com/github/USERNAME/p5js/blob/gh-pages/FILENAME.html?footer=0"></script>
+    </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script>
+        $(window).bind("load", function() {
+            $('#code').before($('#defaultCanvas0').remove());
+        });
+    </script>
+</body>
+
+
+</html>
