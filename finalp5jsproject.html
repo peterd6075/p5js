@@ -1,0 +1,181 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+    <title>p5js Template</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.3/p5.js"></script>
+    
+    <script>
+        //defines position and size variables
+        var y = 450
+        var x = 130
+        var crWH = 50
+        var colorWH = 15
+        
+        var design = 0
+        //array made for calling object through iteration
+        var cools = []
+        
+        function setup() {
+            createCanvas(500,500);
+            background(200)
+        }
+
+        function draw() {
+            //creates rectangle tool
+            fill('red')
+            noStroke()
+            rectMode(CENTER)
+            rect(30,y,crWH,crWH)
+            //creates circle tool
+            fill('blue')
+            ellipseMode(CENTER)
+            ellipse(90,y,crWH,crWH)
+            //calls function with parameters that creates all the different-colored mini tools at the bottom
+            createMiniCircles('red',0)
+            createMiniCircles('orange',20)
+            createMiniCircles('yellow',40)
+            createMiniCircles('green',60)
+            createMiniCircles('blue',80)
+            createMiniCircles('indigo',100)
+            createMiniCircles('violet',120)
+            //creates "cool design" tool
+            fill(140,0,26)
+            rect(x+250,y,220,35)
+            fill(0)
+            textAlign(CENTER)
+            textSize(32)
+            text("COOL DESIGN",380,y+10)
+        }
+        
+        function mousePressed(){
+            //checks where the position of the mouse is when it is clicked and, depending on which tool is "clicked" will determine how the design variable changes and what the user will create once the mouse is dragged
+            if((mouseX > 30-(crWH/2) && mouseX < 30+(crWH/2)) && (mouseY > y-(crWH/2) && mouseY < y+(crWH/2))){
+                design = 1
+            }
+            else if((mouseX > 90-(crWH/2) && mouseX < 90+(crWH/2)) && (mouseY > y-(crWH/2) && mouseY < y+(crWH/2))){
+                design = 2
+            }
+            else if((mouseX > x-(colorWH/2) && mouseX < x+(colorWH/2)) && (mouseY > y-(crWH/2) && mouseY < y+(crWH/2))){
+                design = 3
+            }
+            else if((mouseX > x+20-(colorWH/2) && mouseX < x+20+(colorWH/2)) && (mouseY > y-(crWH/2) && mouseY < y+(crWH/2))){
+                design = 4
+            }
+            else if((mouseX > x+40-(colorWH/2) && mouseX < x+40+(colorWH/2)) && (mouseY > y-(crWH/2) && mouseY < y+(crWH/2))){
+                design = 5
+            }
+            else if((mouseX > x+60-(colorWH/2) && mouseX < x+60+(colorWH/2)) && (mouseY > y-(crWH/2) && mouseY < y+(crWH/2))){
+                design = 6
+            }
+            else if((mouseX > x+80-(colorWH/2) && mouseX < x+80+(colorWH/2)) && (mouseY > y-(crWH/2) && mouseY < y+(crWH/2))){
+                design = 7
+            }
+            else if((mouseX > (x+100)-(colorWH/2) && mouseX < (x+100)+(colorWH/2)) && (mouseY > y-(crWH/2) && mouseY < y+(crWH/2))){
+                design = 8
+            }
+            else if((mouseX > (x+120)-(colorWH/2) && mouseX < (x+120)+(colorWH/2)) && (mouseY > y-(crWH/2) && mouseY < y+(crWH/2))){
+                design = 9
+            }
+            else if((mouseX > 270 && mouseX < 490) && (mouseY > 432.5 && mouseY < 467.5)){
+                design = 10
+                //adds an instance of the "Cool" class into the array "cools" by calling the class
+                cools.push(new Cool())
+            }
+        }
+        
+        function mouseDragged(){
+            //depending on which tool was clicked and how the design variable correspondingly changed, when the mouse is dragged the design identified by that tool will be drawn
+            if(design == 1){
+                fill('red')
+                rectMode(CENTER)
+                rect(mouseX,mouseY,crWH,crWH)
+            }
+            else if(design == 2){
+                fill('blue')
+                ellipseMode(CENTER)
+                ellipse(mouseX,mouseY,crWH,crWH)
+            }
+            else if(design == 3){
+                fill('red')
+                ellipseMode(CENTER)
+                ellipse(mouseX,mouseY,colorWH,colorWH)
+            }
+            else if(design == 4){
+                fill('orange')
+                ellipseMode(CENTER)
+                ellipse(mouseX,mouseY,colorWH,colorWH)
+            }
+            else if(design == 5){
+                fill('yellow')
+                ellipseMode(CENTER)
+                ellipse(mouseX,mouseY,colorWH,colorWH)
+            }
+            else if(design == 6){
+                fill('green')
+                ellipseMode(CENTER)
+                ellipse(mouseX,mouseY,colorWH,colorWH)
+            }
+            else if(design == 7){
+                fill('blue')
+                ellipseMode(CENTER)
+                ellipse(mouseX,mouseY,colorWH,colorWH)
+            }
+            else if(design == 8){
+                fill('indigo')
+                ellipseMode(CENTER)
+                ellipse(mouseX,mouseY,colorWH,colorWH)
+            }
+            else if(design == 9){
+                fill('violet')
+                ellipseMode(CENTER)
+                ellipse(mouseX,mouseY,colorWH,colorWH)
+            }
+            else if(design == 10){
+                noStroke()
+                //iterates through the array and everytime an instance is iterated through, the "cool design" is drawn as the mouse is dragged                
+                for(var i = 0; i < cools.length; i++){
+                    cools[i].display()
+                }
+            }
+        }
+        
+        //function that holds the code for creating the different colored circular tools at the bottom with parameters for color fill and translation
+        function createMiniCircles(c,t){
+            fill(c)
+            ellipse(x+t,y,colorWH,colorWH)
+        }
+        
+        //object class that defines certain values and holds instructions on creating the "cool" circular design 
+        function Cool(){
+            //defines a dilation variable and an angle variable and sets it to 1 and 0, respectively
+            this.d = 1
+            this.a = 0
+            
+            this.display = function(){
+                fill(140,0,26)
+                ellipseMode(CENTER)
+                //makes the circle(s) being created grow in size and then shrink in size and repeat continuously as the mouse is dragged
+                ellipse(mouseX,mouseY,(20*this.d),(20*this.d))
+                this.d = abs(cos(this.a))
+                this.a += PI/100
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div id="code" class="container-fluid">
+        <script src="https://gist-it.appspot.com/github/peterd6075/p5js/blob/gh-pages/finalp5jsproject.html?footer=0"></script>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script>
+        $(window).bind("load", function() {
+            $('#code').before($('#defaultCanvas').remove());
+        });
+    </script>
+</body>
+
+
+</html>
